@@ -1,0 +1,61 @@
+service:
+
+  mysql:
+    image: mysql:8.0
+    container_name: dadosNuvem_mysql
+    restart: unless-stopped
+
+    env_file:
+      - .env
+    
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+      ports: 
+       - "3316:3306"
+      
+      volumes:
+        - mysql_data:/var/lib/mysql
+        - ./mysql/init:/docker-entrypoint-initdb.d
+      
+      healthcheck:
+
+        test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD || exit 1"]
+        interval: 5s
+        timeout: 5s
+        retries: 30
+        start_period: 25s
+  backend:
+    build:
+      context: ./app
+    container_name: dadosNuvem_backend
+    restart: unless-stopped
+
+    env_file:
+      - .env
+     
+    depends_on:
+      mysql:
+        condition: service_healthy
+      
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY}
+      FLASK_DEBUG: ${FLASK_DEBUG}
+
+      ports:
+        - "5000:5000"
+      
+      volumes:
+        - ./app:/app
+
+volumes:
+  mysql_data:
+
