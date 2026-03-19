@@ -1,5 +1,4 @@
-create database monitoramento;
-SHOW monitoramento;
+
 use monitoramento;
 
 create table registros (
