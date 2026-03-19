@@ -1,11 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Monitoramento Ambiental</title>
+<link rel="stylesheet" href="../static/css/style.css">
 </head>
+
 <body>
-    
+
+<div class="header">
+    <h1>Monitoramento Ambiental</h1>
+</div>
+
+<div class="container">
+
+    <div class="top-box">
+        <div>
+            <h2>Dados de monitoramento</h2>
+            <p>Este painel mostra os registros e salva o histórico localmente, enviados pelo ThingSpeak, Docker e MySQL.</p>
+        </div>
+        <button class="btn">Enviar nova leitura</button>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Última temperatura</h3>
+            <p id="temp">-- °C</p>
+        </div>
+
+        <div class="card">
+            <h3>Última umidade</h3>
+            <p id="umid">-- %</p>
+        </div>
+
+        <div class="card">
+            <h3>Quantidade lida</h3>
+            <p id="qtd">--</p>
+        </div>
+    </div>
+
+    <div class="tables">
+        <div class="table-box">
+            <h3>Dados do ThingSpeak</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data/Hora</th>
+                        <th>Temperatura</th>
+                        <th>Umidade</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-api">
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-box">
+            <h3>Registros no MySQL</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Temp.</th>
+                        <th>Umid.</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-bd">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
