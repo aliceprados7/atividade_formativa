@@ -1,8 +1,9 @@
 async function carregarDados() {
     try {
-        const resposta = await fetch("http://10.110.12.47:5000/"); 
+        const resposta = await fetch("http://localhost:5000/"); 
         const json = await resposta.json();
         const listaRegistros = json.dados; 
+        const ultimoRegistro = listaRegistros.at(-1);
 
         if (listaRegistros.length > 0) {
          

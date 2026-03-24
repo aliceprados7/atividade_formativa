@@ -12,3 +12,4 @@ def conectar():
         database=DB_NAME
     )
     return conexao
+ 
