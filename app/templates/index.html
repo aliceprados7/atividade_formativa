@@ -12,12 +12,19 @@
     <h1>Monitoramento Ambiental</h1>
 </div>
 
+
 <div class="container">
 
     <div class="top-box">
         <div>
             <h2>Dados de monitoramento</h2>
             <p>Este painel mostra os registros e salva o histórico localmente, enviados pelo ThingSpeak, Docker e MySQL.</p>
+            <p id="conec">Digite o IP do servidor em que a aplicação está rodando (originalmente no 10.110.12.11)</p>
+            <p id="conec">Ou digite localhost caso a aplicação seja local</p>
+            <input id="ip" type="text" placeholder="IP do servidor"/>
+
+            <button id="conexao" onclick="carregarDados()">Conectar</button>
+        
         </div>
     </div>
 
